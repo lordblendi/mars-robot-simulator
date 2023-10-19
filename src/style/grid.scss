@@ -1,0 +1,11 @@
+.grid {
+    display: flex;
+
+    &Cell {
+        border: 1px solid gray;
+        min-height: 3rem;
+        min-width: 3rem;
+        padding: 0.5rem;
+        text-align: center;
+    }
+}
