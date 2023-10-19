@@ -12,12 +12,14 @@ const GridCell = ({ x, y }: Props): JSX.Element => {
 
     const showRobot = position.x === x && position.y === y
 
+    const background = (x + y) % 2 === 0 ? "light" : "dark"
+
     return (
-        <div className="gridCell">
+        <div className={`gridCell gridCell--${background}`}>
             {showRobot ? (
                 <Robot />
             ) : (
-                <span className="tw-text-gray-300 tw-text-xs">
+                <span>
                     ({x},{y})
                 </span>
             )}
