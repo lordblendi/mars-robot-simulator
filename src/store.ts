@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import counterReducer from "./components/counter/slice"
+import robotReducer from "./features/robot/slice"
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        robot: robotReducer,
     },
 })
 
