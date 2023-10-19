@@ -3,23 +3,32 @@
 
     &Cell {
         border: 0.5px dashed lightgray;
+        margin: 0.25rem 0.125rem;
         min-height: 3rem;
         min-width: 3rem;
         padding: 0.5rem;
-        margin: 0.25rem 0.125rem;
         text-align: center;
 
         &--dark {
             background-color: gray;
+
+            span {
+                color: lightgray
+
+            }
         }
 
         &--light {
             background-color: whitesmoke;
+
+            span {
+                color: darkgrey;
+            }
+
         }
 
         span {
             font-size: 0.75rem;
-            color: lightgray;
         }
     }
 }
