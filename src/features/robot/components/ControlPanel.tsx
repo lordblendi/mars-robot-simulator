@@ -81,6 +81,7 @@ const ControlPanel = (): JSX.Element => {
             </h3>
 
             <input
+                autoFocus
                 className="tw-p-1 tw-border tw-border-gray-600 tw-rounded tw-w-full"
                 onChange={onChange}
                 onKeyUp={onKeyUp}
