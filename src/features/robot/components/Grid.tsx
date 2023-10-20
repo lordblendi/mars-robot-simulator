@@ -14,10 +14,14 @@ const Grid = (): JSX.Element => {
     for (let x = 0; x < numberOfRows; x++) {
         const cells: JSX.Element[] = []
         for (let y = numberOfColumns - 1; y >= 0; y--) {
-            cells.push(<GridCell x={x} y={y} />)
+            cells.push(<GridCell x={x} y={y} key={`cell-${x},${y}`} />)
         }
 
-        rows.push(<div className="gridRow">{cells}</div>)
+        rows.push(
+            <div className="gridRow" key={`row-${x}`}>
+                {cells}
+            </div>,
+        )
     }
 
     return <div className="grid">{rows}</div>
