@@ -9,8 +9,8 @@ export interface RobotState {
 const initialState: RobotState = {
     robot: {
         position: {
-            x: 1,
-            y: 1,
+            x: -1,
+            y: -1,
         },
         degree: 0,
     },
@@ -34,6 +34,9 @@ export const robotSlice = createSlice({
     name: "robot",
     initialState,
     reducers: {
+        setMessage: (state, action: PayloadAction<string>) => {
+            state.message = action.payload
+        },
         move: (state) => {
             const {
                 degree,
@@ -124,6 +127,6 @@ export const robotSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { move, place, report, turn } = robotSlice.actions
+export const { move, place, report, setMessage, turn } = robotSlice.actions
 
 export default robotSlice.reducer

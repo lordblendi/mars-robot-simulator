@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faComment } from "@fortawesome/free-regular-svg-icons"
 
 import type { RootState } from "../../../store"
-import { move, place, report, turn } from "../slice"
+import { move, place, report, setMessage, turn } from "../slice"
 
 const ControlPanel = (): JSX.Element => {
     const {
@@ -29,10 +29,14 @@ const ControlPanel = (): JSX.Element => {
                 const isRobotOnTable = x >= 0 && y >= 0
 
                 // we only accept the place command
-                if (lowerCaseCommand.match(placeCommandRegex)) {
-                    const parameters = lowerCaseCommand.split(" ")[1]
-                    dispatch(place(parameters))
-                    setCommand("")
+                if (lowerCaseCommand.startsWith("place")) {
+                    if (lowerCaseCommand.match(placeCommandRegex)) {
+                        const parameters = lowerCaseCommand.split(" ")[1]
+                        dispatch(place(parameters))
+                        setCommand("")
+                    } else {
+                        dispatch(setMessage("Invalid command."))
+                    }
                 }
                 // unless the robot is on the table already
                 else if (isRobotOnTable) {
@@ -48,7 +52,15 @@ const ControlPanel = (): JSX.Element => {
                     } else if (lowerCaseCommand === "right") {
                         dispatch(turn(90))
                         setCommand("")
+                    } else {
+                        dispatch(setMessage("Invalid command."))
                     }
+                } else {
+                    dispatch(
+                        setMessage(
+                            "You have to place the robot on the table first.",
+                        ),
+                    )
                 }
             }
         },
