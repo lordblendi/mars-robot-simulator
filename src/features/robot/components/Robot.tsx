@@ -7,7 +7,9 @@ import { faShuttleSpace } from "@fortawesome/free-solid-svg-icons"
 import type { RootState } from "../../../store"
 
 const Robot = (): JSX.Element => {
-    const { degree: direction } = useSelector((state: RootState) => state.robot.robot)
+    const { degree: direction } = useSelector(
+        (state: RootState) => state.robot.robot,
+    )
 
     // I've chosen an icon that is by default pointing to the right
     // thus I have to adjust it
