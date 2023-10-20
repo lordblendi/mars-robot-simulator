@@ -13,7 +13,7 @@ const Robot = (): JSX.Element => {
 
     // I've chosen an icon that is by default pointing to the right
     // thus I have to adjust it
-    // this type is define dby the FontAwesome package I'm using
+    // this type is defined by the FontAwesome package I'm using
     let rotation: 90 | 180 | 270 | undefined
     switch (direction) {
         // north
