@@ -33,7 +33,9 @@ const Robot = (): JSX.Element => {
             break
     }
 
-    return <FontAwesomeIcon icon={faShuttleSpace} rotation={rotation} />
+    return (
+        <FontAwesomeIcon icon={faShuttleSpace} size="xl" rotation={rotation} />
+    )
 }
 
 export default Robot
