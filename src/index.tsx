@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client"
 import { store } from "./store"
 
 import CommandList from "./features/robot/components/CommandList"
+import ControlPanel from "./features/robot/components/ControlPanel"
 import Grid from "./features/robot/components/Grid"
 
 import "./style/index.scss"
@@ -14,9 +15,12 @@ const rootElement = document.getElementById("root")
 if (!!rootElement) {
     const App = (): JSX.Element => {
         return (
-            <div className="tw-p-4 tw-flex tw-gap-4">
+            <div className="tw-p-4 tw-gap-4 tw-flex tw-flex-col tw-items-center">
                 <Grid />
-                <CommandList />
+                <div className="tw-flex tw-gap-4">
+                    <ControlPanel />
+                    <CommandList />
+                </div>
             </div>
         )
     }
