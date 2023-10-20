@@ -92,7 +92,7 @@ export const robotSlice = createSlice({
                     break
             }
 
-            state.message = `The robot was placed on the table in position ${parameters}.`
+            state.message = `The robot was placed on the table in position ${action.payload.toUpperCase()}.`
         },
 
         report: (state) => {

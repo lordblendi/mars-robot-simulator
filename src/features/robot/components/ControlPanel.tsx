@@ -75,7 +75,7 @@ const ControlPanel = (): JSX.Element => {
     )
 
     return (
-        <div className=" tw-my-1 tw-p-3 tw-rounded tw-border-dashed tw-border tw-border-gray-300 tw-w-1/2">
+        <div className=" tw-my-1 tw-p-3 tw-rounded tw-border-dashed tw-border tw-border-gray-300 tw-w-1/3">
             <h3 className="tw-pb-2">
                 What would you like to do with the robot?
             </h3>
@@ -88,13 +88,11 @@ const ControlPanel = (): JSX.Element => {
                 value={command}
             />
 
-            {!!message && (
-                <div className="tw-my-4 tw-py-2 tw-border tw-rounded tw-p-2 tw-text-gray-700">
-                    <FontAwesomeIcon icon={faComment} />
-                    &nbsp;
-                    {message}
-                </div>
-            )}
+            <div className="tw-my-4 tw-py-2 tw-border tw-rounded tw-p-2 tw-text-gray-700">
+                <FontAwesomeIcon icon={faComment} />
+                &nbsp;
+                {message}
+            </div>
         </div>
     )
 }

@@ -13,10 +13,10 @@
         text-align: center;
 
         &--dark {
-            background-color: gray;
+            background-color: darkgray;
 
             span {
-                color: lightgray
+                color: whitesmoke
 
             }
         }
@@ -28,6 +28,10 @@
                 color: darkgrey;
             }
 
+        }
+
+        svg {
+            color: darkcyan;
         }
 
         span {

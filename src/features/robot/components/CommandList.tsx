@@ -2,7 +2,7 @@ import React from "react"
 
 const CommandList = (): JSX.Element => {
     return (
-        <div className=" tw-my-1 tw-p-3 tw-rounded tw-border-dashed tw-border tw-border-gray-300 tw-w-1/2">
+        <div className=" tw-my-1 tw-p-3 tw-rounded tw-border-dashed tw-border tw-border-gray-300 tw-w-2/3">
             <h2 className="tw-pb-2">Command Palette</h2>
 
             <ul className="tw-list-disc tw-list-inside">

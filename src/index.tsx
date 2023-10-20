@@ -17,7 +17,7 @@ if (!!rootElement) {
         return (
             <div className="tw-p-4 tw-gap-4 tw-flex tw-flex-col tw-items-center">
                 <Grid />
-                <div className="tw-flex tw-gap-4">
+                <div className="tw-flex tw-gap-2 tw-w-full">
                     <ControlPanel />
                     <CommandList />
                 </div>
