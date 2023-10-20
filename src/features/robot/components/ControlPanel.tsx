@@ -1,26 +1,58 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faComment } from "@fortawesome/free-regular-svg-icons"
 
 import type { RootState } from "../../../store"
+import { move, place, report, turn } from "../slice"
 
 const ControlPanel = (): JSX.Element => {
-    const { position } = useSelector((state: RootState) => state.robot.robot)
+    const {
+        robot: {
+            position: { x, y },
+        },
+        message,
+    } = useSelector((state: RootState) => state.robot)
+    const dispatch = useDispatch()
 
     const [command, setCommand] = React.useState("")
-    const [message, setMessage] = React.useState("To start place your robot on the desk.")
 
     const onKeyUp = React.useCallback(
-        ({ key, target }: React.KeyboardEvent<HTMLInputElement>): void => {
+        ({ key }: React.KeyboardEvent<HTMLInputElement>): void => {
             if (key === "Enter") {
-                console.log(event)
-                console.log(target)
-                console.log(target)
+                const lowerCaseCommand = command.toLowerCase()
+
+                const placeCommandRegex =
+                    /^place [0-4],[0-4],(north|east|south|west)$/
+
+                const isRobotOnTable = x >= 0 && y >= 0
+
+                // we only accept the place command
+                if (lowerCaseCommand.match(placeCommandRegex)) {
+                    const parameters = lowerCaseCommand.split(" ")[1]
+                    dispatch(place(parameters))
+                    setCommand("")
+                }
+                // unless the robot is on the table already
+                else if (isRobotOnTable) {
+                    if (lowerCaseCommand === "report") {
+                        dispatch(report())
+                        setCommand("")
+                    } else if (lowerCaseCommand === "move") {
+                        dispatch(move())
+                        setCommand("")
+                    } else if (lowerCaseCommand === "left") {
+                        dispatch(turn(-90))
+                        setCommand("")
+                    } else if (lowerCaseCommand === "right") {
+                        dispatch(turn(90))
+                        setCommand("")
+                    }
+                }
             }
         },
-        [],
+        [command, x, y],
     )
 
     const onChange = React.useCallback(
@@ -31,7 +63,7 @@ const ControlPanel = (): JSX.Element => {
     )
 
     return (
-        <div className=" tw-my-1 tw-p-3 tw-rounded tw-border-dashed tw-border tw-border-gray-300">
+        <div className=" tw-my-1 tw-p-3 tw-rounded tw-border-dashed tw-border tw-border-gray-300 tw-w-1/2">
             <h3 className="tw-pb-2">
                 What would you like to do with the robot?
             </h3>
@@ -41,6 +73,7 @@ const ControlPanel = (): JSX.Element => {
                 onChange={onChange}
                 onKeyUp={onKeyUp}
                 placeholder="Type in a command and press enter"
+                value={command}
             />
 
             {!!message && (
