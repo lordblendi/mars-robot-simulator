@@ -4,6 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit"
 export interface RobotState {
     robot: Robot
     message: string
+    gridSize: GridSize
 }
 
 const initialState: RobotState = {
@@ -13,6 +14,10 @@ const initialState: RobotState = {
             y: -1,
         },
         degree: 0,
+    },
+    gridSize: {
+        columns: 5,
+        rows: 5,
     },
     message: "To start place your robot on the desk.",
 }
@@ -43,13 +48,16 @@ export const robotSlice = createSlice({
                 position: { x, y },
             } = state.robot
 
+            const rowControl = state.gridSize.rows - 1
+            const columnControl = state.gridSize.columns - 1
+
             if (x === -1 || y === -1) {
                 return
-            } else if (degree === 0 && y < 4) {
+            } else if (degree === 0 && y < rowControl) {
                 state.robot.position.y++
                 state.message = "The robot moved towards NORTH."
                 return
-            } else if (degree === 90 && x < 4) {
+            } else if (degree === 90 && x < columnControl) {
                 state.robot.position.x++
                 state.message = "The robot moved towards EAST."
                 return

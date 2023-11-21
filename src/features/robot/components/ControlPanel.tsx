@@ -12,6 +12,7 @@ const ControlPanel = (): JSX.Element => {
         robot: {
             position: { x, y },
         },
+        gridSize: { rows, columns },
         message,
     } = useSelector((state: RootState) => state.robot)
     const dispatch = useDispatch()
@@ -23,8 +24,11 @@ const ControlPanel = (): JSX.Element => {
             if (key === "Enter") {
                 const lowerCaseCommand = command.toLowerCase()
 
-                const placeCommandRegex =
-                    /^place [0-4],[0-4],(north|east|south|west)$/
+                const placeCommandRegex = new RegExp(
+                    `^place [0-${columns - 1}],[0-${
+                        rows - 1
+                    }],(north|east|south|west)$`,
+                )
 
                 const isRobotOnTable = x >= 0 && y >= 0
 

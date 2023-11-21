@@ -7,3 +7,8 @@ interface Position {
     x: number
     y: number
 }
+
+interface GridSize {
+    rows: number
+    columns: number
+}
